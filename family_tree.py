@@ -1,4 +1,4 @@
-from sheets_to_data import sheet_to_data
+from family_data import get_family_data
 import os.path
 import subprocess
 
@@ -150,7 +150,7 @@ def insert_generation(f, people, generations):
 ###############################################################################
 
 def get_family_tree(root, display=False):
-    people, generations = sheet_to_data(root, display)
+    people, generations = get_family_data(root, display)
 
     filename = "output/" + root.replace(' ', '_').lower() + ".dot"
 
@@ -179,7 +179,15 @@ def get_family_tree(root, display=False):
     command = f'dot -Tpng -O {filename}'
     subprocess.call(command, shell=True)
 
-# todo implement get_lineage(): given a node, it will generate a tree with all their ancestors
+# todo *** create excel or csv logic
+# todo *** implement main function to take argparse inputs
+# todo *** allow for option between sheets and csv
+
+# todo ** create readme on instructions on how to use the family tree
+
+# todo ** implement get_lineage(): given a node, it will generate a tree with all their ancestors
+
+# todo * add a dark mode option
 
 get_family_tree("Vishnuprasad Trivedi")
 get_family_tree("Fulshankar Adhyaru")
